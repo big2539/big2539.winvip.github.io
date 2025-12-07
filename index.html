@@ -1,260 +1,154 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>แชร์เพื่อรับเครดิตฟรี</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แชร์เพื่อรับเครดิตฟรี</title>
 
-  <!-- LIFF SDK -->
-  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap');
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    :root{
-      --bg1: #0f1724;
-      --bg2: #0b1220;
-      --accent: linear-gradient(135deg,#ff006a 0%, #ff8f37 100%);
-      --glass: rgba(255,255,255,0.04);
-    }
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-family:'Prompt',sans-serif;
-      background: radial-gradient(1200px 600px at 10% 20%, rgba(255,0,106,0.15), transparent 10%),
-                  radial-gradient(1000px 500px at 90% 80%, rgba(255,143,55,0.08), transparent 10%),
-                  linear-gradient(180deg,var(--bg1),var(--bg2));
-      color:#e6eef8;
-      padding:24px;
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Prompt', sans-serif;
+        background: linear-gradient(135deg, #0a0a0f, #1a1a25 50%, #0d0d15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
     }
 
-    .card{
-      width:100%;
-      max-width:760px;
-      border-radius:18px;
-      padding:28px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      box-shadow: 0 10px 30px rgba(2,6,23,0.6), 0 0 40px rgba(255,0,106,0.08) inset;
-      backdrop-filter: blur(8px);
-      display:grid;
-      gap:20px;
-      grid-template-columns: 1fr 320px;
-      align-items:center;
+    .container {
+        text-align: center;
+        padding: 40px 25px;
+        background: rgba(20, 20, 30, 0.7);
+        border-radius: 22px;
+        backdrop-filter: blur(10px);
+        width: 90%;
+        max-width: 420px;
+        box-shadow: 0 0 20px rgba(120, 70, 255, 0.7), 0 0 50px rgba(120, 70, 255, 0.4);
+        border: 1px solid rgba(150, 100, 255, 0.3);
     }
 
-    .left{ padding:10px 18px; }
-
-    h1{
-      margin:0 0 8px 0;
-      font-size:22px;
-      font-weight:700;
-    }
-    p.lead{
-      margin:0 0 14px 0;
-      color:#ffd9ec;
-      opacity:0.9;
-      font-size:14px;
-      line-height:1.5;
+    h1 {
+        margin-top: 0;
+        color: #ffffff;
+        font-size: 28px;
+        text-shadow: 0 0 10px #9d68ff;
     }
 
-    .preview{
-      border-radius:12px;
-      overflow:hidden;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      box-shadow:0 6px 18px rgba(2,6,23,0.5);
-      border:1px solid rgba(255,255,255,0.03);
-    }
-    .preview .hero{
-      width:100%;
-      height:160px;
-      background-position:center;
-      background-size:cover;
-      background-repeat:no-repeat;
-      display:flex;
-      align-items:flex-end;
-      padding:12px;
-      box-shadow: inset 0 -40px 80px rgba(0,0,0,0.55);
-    }
-    .preview .body{
-      padding:12px;
-      font-size:13px;
-      color:#ffe6f2;
-    }
-    .preview .cta{
-      padding:12px;
-      text-align:right;
-      border-top:1px solid rgba(255,255,255,0.05);
-    }
-    .preview .cta a{
-      text-decoration:none;
-      padding:7px 12px;
-      font-size:13px;
-      border-radius:8px;
-      background:rgba(255,0,106,0.18);
-      color:#ff82b5;
-      border:1px solid rgba(255,0,106,0.25);
+    p {
+        color: #cfc9ff;
+        font-size: 15px;
+        margin-bottom: 25px;
     }
 
-    .right{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      flex-direction:column;
+    .share-btn {
+        padding: 15px 20px;
+        font-size: 18px;
+        font-weight: 600;
+        background: linear-gradient(135deg, #8b5dfd, #5b2dff);
+        border: none;
+        color: white;
+        border-radius: 12px;
+        cursor: pointer;
+        width: 100%;
+        box-shadow: 0 0 12px rgba(140, 70, 255, 0.9), 0 0 25px rgba(140, 70, 255, 0.6);
+        transition: 0.25s;
     }
 
-    .share-btn{
-      padding:14px 22px;
-      border-radius:14px;
-      font-weight:700;
-      font-size:16px;
-      background:var(--accent);
-      border:none;
-      color:white;
-      cursor:pointer;
-      box-shadow:0 10px 32px rgba(255,0,106,0.25);
-      transition:transform .12s ease,box-shadow .12s ease;
+    .share-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(160, 90, 255, 1);
     }
-    .share-btn:active{ transform:scale(.96); }
-    .share-btn[disabled]{ opacity:.6; cursor:not-allowed; }
-
-    .note{ font-size:12px; opacity:0.85; color:#ffd9ec; }
-
-    @media(max-width:800px){
-      .card{ grid-template-columns:1fr; padding:18px; }
-      .right{ flex-direction:row; }
-    }
-  </style>
+</style>
 </head>
 <body>
 
-  <div class="card">
-    <div class="left">
-      <h1>แชร์เพื่อรับเครดิตฟรีทันที!</h1>
+<div class="container">
+    <h1>รับเครดิตฟรีทันที!</h1>
+    <p>เพียงแชร์ให้เพื่อนหรือกลุ่มใน LINE เพื่อยืนยันสิทธิ์ของคุณ</p>
+    <p>หลังแชร์สำเร็จ สามารถกดเข้ารับเครดิตฟรีได้ทันที</p>
 
-      <p class="lead">
-        เพียงแชร์ไปยังเพื่อนหรือกลุ่มใน LINE จากปุ่มด้านขวา  
-        ระบบจะส่ง Flex พร้อมปุ่มกดเข้ารับเครดิตฟรีอัตโนมัติให้คุณ
-      </p>
+    <button class="share-btn" onclick="share()">กดแชร์ให้เพื่อน/กลุ่ม</button>
+</div>
 
-      <div class="preview">
-        <div class="hero" style="background-image:url('https://img5.pic.in.th/file/secure-sv1/image---2025-12-07T221431.435.png')"></div>
+<script>
+    const liffId = "2008637844-5AezaL79";
 
-        <div class="body">
-          <strong>รับเครดิตฟรีทันที!</strong>
-          <div style="margin-top:8px;">
-            แชร์โพสต์นี้ให้เพื่อน/กลุ่ม เพื่อรับสิทธิ์พิเศษตามเงื่อนไข<br>
-            ยืนยันการรับสิทธิ์ผ่านลิงก์ด้านล่างได้เลย
-          </div>
-        </div>
+    async function share() {
+        await liff.init({ liffId });
 
-        <div class="cta">
-          <a href="https://winnerst88.carrd.co" target="_blank">ไปที่หน้าเครดิตฟรี</a>
-        </div>
-      </div>
-    </div>
+        const flexMessage = {
+            type: "flex",
+            altText: "รับเครดิตฟรีทันที!",
+            contents: {
+                type: "bubble",
 
-    <div class="right">
-      <button id="btnShare" class="share-btn">กดแชร์เพื่อรับเครดิตฟรี</button>
-      <div id="statusNote" class="note">เปิดจาก LINE แอปเพื่อใช้งานปุ่มนี้</div>
-    </div>
-  </div>
+                hero: {
+                    type: "image",
+                    url: "https://img5.pic.in.th/file/secure-sv1/image---2025-12-07T221431.435.png",
+                    size: "full",
+                    aspectRatio: "16:9",
+                    aspectMode: "cover"
+                },
 
-  <script>
-    const LIFF_ID = "2008637844-5AezaL79";
+                body: {
+                    type: "box",
+                    layout: "vertical",
+                    spacing: "md",
+                    contents: [
+                        {
+                            type: "text",
+                            text: "รับเครดิตฟรีทันที!",
+                            weight: "bold",
+                            size: "xl",
+                            color: "#ffffff"
+                        },
+                        {
+                            type: "text",
+                            text: "กดแชร์เพื่อยืนยันสิทธิ์ แล้วรับเครดิตฟรีได้เลย",
+                            wrap: true,
+                            size: "sm",
+                            color: "#d4c9ff"
+                        },
+                        {
+                            type: "text",
+                            text: "แชร์เพียง 1 ครั้งเท่านั้น!",
+                            wrap: true,
+                            size: "sm",
+                            color: "#b999ff"
+                        }
+                    ]
+                },
 
-    const flexMessage = {
-      type: "flex",
-      altText: "รับเครดิตฟรีทันที!",
-      contents: {
-        type: "bubble",
-        hero: {
-          type: "image",
-          url: "https://img5.pic.in.th/file/secure-sv1/image---2025-12-07T221431.435.png",
-          size: "full",
-          aspectRatio: "16:9",
-          aspectMode: "cover"
-        },
-        body: {
-          type: "box",
-          layout: "vertical",
-          spacing: "md",
-          contents: [
-            {
-              type: "text",
-              text: "รับเครดิตฟรีทันที!",
-              weight: "bold",
-              size: "lg",
-              color: "#111111"
-            },
-            {
-              type: "text",
-              text: "แชร์เพื่อยืนยันสิทธิ์ของคุณ รับเครดิตฟรีตามเงื่อนไขที่กำหนด",
-              wrap: true,
-              size: "sm",
-              color: "#444444"
-            },
-            {
-              type: "text",
-              text: "โปรดกดปุ่มด้านล่างเพื่อเข้ารับสิทธิ์หลังแชร์สำเร็จ",
-              wrap: true,
-              size: "sm",
-              color: "#777777",
-              margin: "sm"
+                footer: {
+                    type: "box",
+                    layout: "vertical",
+                    spacing: "sm",
+                    contents: [
+                        {
+                            type: "button",
+                            style: "primary",
+                            color: "#8b5dfd",
+                            action: {
+                                type: "uri",
+                                label: "👉 เข้ารับเครดิตฟรี",
+                                uri: "https://winnerst88.carrd.co"
+                            }
+                        }
+                    ]
+                }
             }
-          ]
-        },
-        footer: {
-          type: "box",
-          layout: "vertical",
-          contents: [
-            {
-              type: "button",
-              style: "primary",
-              color: "#ff006a",
-              action: {
-                type: "uri",
-                label: "กดรับเครดิตฟรี",
-                uri: "https://winnerst88.carrd.co"
-              }
-            }
-          ]
-        }
-      }
-    };
+        };
 
-    async function initLiff() {
-      try {
-        await liff.init({ liffId: LIFF_ID });
-        if (liff.isInClient()) {
-          statusNote.textContent = "พร้อมแชร์จากใน LINE";
-        } else {
-          statusNote.textContent = "ต้องเปิดจาก LINE ถึงจะกดแชร์ได้";
-        }
-      } catch (e) {
-        statusNote.textContent = "เกิดข้อผิดพลาดกับ LIFF";
-        console.error(e);
-      }
+        liff.shareTargetPicker([flexMessage]);
     }
-
-    async function shareFlex() {
-      try {
-        await liff.shareTargetPicker([flexMessage]);
-        alert("ส่ง Flex แล้ว ตรวจสอบใน LINE!");
-      } catch (e) {
-        alert("แชร์ไม่สำเร็จ: " + e.message);
-      }
-    }
-
-    btnShare.addEventListener("click", shareFlex);
-
-    window.onload = initLiff;
-  </script>
+</script>
 
 </body>
 </html>
