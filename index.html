@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>แชร์ Flex — LIFF ShareTargetPicker</title>
+  <title>แชร์เพื่อรับเครดิตฟรี</title>
 
   <!-- LIFF SDK -->
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
@@ -14,7 +14,7 @@
     :root{
       --bg1: #0f1724;
       --bg2: #0b1220;
-      --accent: linear-gradient(135deg,#7b61ff 0%, #00d4ff 100%);
+      --accent: linear-gradient(135deg,#ff006a 0%, #ff8f37 100%);
       --glass: rgba(255,255,255,0.04);
     }
 
@@ -26,8 +26,8 @@
       align-items:center;
       justify-content:center;
       font-family:'Prompt',sans-serif;
-      background: radial-gradient(1200px 600px at 10% 20%, rgba(123,97,255,0.12), transparent 10%),
-                  radial-gradient(1000px 500px at 90% 80%, rgba(0,212,255,0.06), transparent 10%),
+      background: radial-gradient(1200px 600px at 10% 20%, rgba(255,0,106,0.15), transparent 10%),
+                  radial-gradient(1000px 500px at 90% 80%, rgba(255,143,55,0.08), transparent 10%),
                   linear-gradient(180deg,var(--bg1),var(--bg2));
       color:#e6eef8;
       padding:24px;
@@ -39,7 +39,7 @@
       border-radius:18px;
       padding:28px;
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      box-shadow: 0 10px 30px rgba(2,6,23,0.6), 0 0 40px rgba(123,97,255,0.06) inset;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6), 0 0 40px rgba(255,0,106,0.08) inset;
       backdrop-filter: blur(8px);
       display:grid;
       gap:20px;
@@ -47,150 +47,130 @@
       align-items:center;
     }
 
-    .left{
-      padding:10px 18px;
-    }
+    .left{ padding:10px 18px; }
 
     h1{
       margin:0 0 8px 0;
-      font-size:20px;
+      font-size:22px;
       font-weight:700;
-      letter-spacing:0.2px;
     }
     p.lead{
       margin:0 0 14px 0;
-      color: #cfe9ff;
+      color:#ffd9ec;
       opacity:0.9;
       font-size:14px;
+      line-height:1.5;
     }
 
-    /* preview */
     .preview{
       border-radius:12px;
       overflow:hidden;
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      box-shadow: 0 6px 18px rgba(2,6,23,0.5);
-      border: 1px solid rgba(255,255,255,0.03);
+      box-shadow:0 6px 18px rgba(2,6,23,0.5);
+      border:1px solid rgba(255,255,255,0.03);
     }
     .preview .hero{
       width:100%;
       height:160px;
       background-position:center;
       background-size:cover;
+      background-repeat:no-repeat;
       display:flex;
       align-items:flex-end;
       padding:12px;
-      gap:8px;
-      color:white;
-      background-blend-mode:overlay;
-      box-shadow: inset 0 -40px 80px rgba(0,0,0,0.5);
+      box-shadow: inset 0 -40px 80px rgba(0,0,0,0.55);
     }
     .preview .body{
       padding:12px;
       font-size:13px;
-      color:#dcecff;
+      color:#ffe6f2;
     }
     .preview .cta{
-      display:flex;
-      gap:8px;
       padding:12px;
-      border-top:1px solid rgba(255,255,255,0.02);
-      justify-content:flex-end;
-      background: linear-gradient(180deg, rgba(255,255,255,0.006), transparent);
+      text-align:right;
+      border-top:1px solid rgba(255,255,255,0.05);
     }
-    .cta a{
+    .preview .cta a{
       text-decoration:none;
-      font-weight:600;
+      padding:7px 12px;
       font-size:13px;
-      padding:8px 12px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.03);
-      background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:8px;
+      background:rgba(255,0,106,0.18);
+      color:#ff82b5;
+      border:1px solid rgba(255,0,106,0.25);
     }
 
-    /* center big button column */
     .right{
       display:flex;
       align-items:center;
       justify-content:center;
       gap:12px;
       flex-direction:column;
-      padding:6px;
     }
 
     .share-btn{
-      --g: linear-gradient(90deg,#7b61ff,#00d4ff);
       padding:14px 22px;
       border-radius:14px;
       font-weight:700;
       font-size:16px;
-      background:var(--g);
-      box-shadow: 0 8px 30px rgba(123,97,255,0.18), 0 2px 8px rgba(0,0,0,0.4);
+      background:var(--accent);
       border:none;
       color:white;
       cursor:pointer;
-      transition:transform .12s ease, box-shadow .12s ease;
+      box-shadow:0 10px 32px rgba(255,0,106,0.25);
+      transition:transform .12s ease,box-shadow .12s ease;
     }
-    .share-btn:active{ transform:translateY(1px) scale(.998) }
-    .share-btn[disabled]{
-      opacity:0.6;
-      cursor:not-allowed;
-      box-shadow:none;
-    }
+    .share-btn:active{ transform:scale(.96); }
+    .share-btn[disabled]{ opacity:.6; cursor:not-allowed; }
 
-    .note{
-      font-size:12px;
-      color:#bcdcff;
-      text-align:center;
-      opacity:0.9;
-    }
+    .note{ font-size:12px; opacity:0.85; color:#ffd9ec; }
 
-    @media (max-width:800px){
-      .card{ grid-template-columns: 1fr; padding:18px; gap:14px; }
+    @media(max-width:800px){
+      .card{ grid-template-columns:1fr; padding:18px; }
       .right{ flex-direction:row; }
     }
   </style>
 </head>
 <body>
 
-  <div class="card" role="main" aria-label="แชร์ Flex ไปยังเพื่อนหรือกลุ่ม">
+  <div class="card">
     <div class="left">
-      <h1>แชร์เพื่อรับสิทธิ์ — ตัวอย่าง Flex</h1>
-      <p class="lead">กดปุ่มด้านขวาเพื่อเปิดหน้าต่างเลือกเพื่อนหรือกลุ่มในแอป LINE แล้วส่ง Flex message ตัวอย่าง (มีรูป + ปุ่มไปยัง winnerst88.carrd.co)</p>
+      <h1>แชร์เพื่อรับเครดิตฟรีทันที!</h1>
 
-      <div class="preview" aria-hidden="true">
-        <div class="hero" id="previewHero" style="background-image: url('https://img5.pic.in.th/file/secure-sv1/image---2025-12-07T221431.435.png')">
-          <!-- optional small label -->
-        </div>
+      <p class="lead">
+        เพียงแชร์ไปยังเพื่อนหรือกลุ่มใน LINE จากปุ่มด้านขวา  
+        ระบบจะส่ง Flex พร้อมปุ่มกดเข้ารับเครดิตฟรีอัตโนมัติให้คุณ
+      </p>
+
+      <div class="preview">
+        <div class="hero" style="background-image:url('https://img5.pic.in.th/file/secure-sv1/image---2025-12-07T221431.435.png')"></div>
+
         <div class="body">
-          <strong>รับสิทธิพิเศษทันที!</strong>
-          <div style="margin-top:8px; color:#e0f2ff; opacity:0.95;">
-            แชร์โพสต์นี้ให้เพื่อนหรือกลุ่ม แล้วรับสิทธิพิเศษตามเงื่อนไข
+          <strong>รับเครดิตฟรีทันที!</strong>
+          <div style="margin-top:8px;">
+            แชร์โพสต์นี้ให้เพื่อน/กลุ่ม เพื่อรับสิทธิ์พิเศษตามเงื่อนไข<br>
+            ยืนยันการรับสิทธิ์ผ่านลิงก์ด้านล่างได้เลย
           </div>
         </div>
+
         <div class="cta">
-          <a href="https://winnerst88.carrd.co" target="_blank" rel="noopener">ไปที่ winnerst88.carrd.co</a>
+          <a href="https://winnerst88.carrd.co" target="_blank">ไปที่หน้าเครดิตฟรี</a>
         </div>
       </div>
     </div>
 
     <div class="right">
-      <button id="btnShare" class="share-btn">กดแชร์ให้เพื่อน/กลุ่ม</button>
-      <div class="note" id="statusNote">ทดสอบจากแอป LINE เพื่อใช้งานเต็มรูปแบบ</div>
+      <button id="btnShare" class="share-btn">กดแชร์เพื่อรับเครดิตฟรี</button>
+      <div id="statusNote" class="note">เปิดจาก LINE แอปเพื่อใช้งานปุ่มนี้</div>
     </div>
   </div>
 
   <script>
-    // ใส่ LIFF ID ของคุณที่นี่
     const LIFF_ID = "2008637844-5AezaL79";
 
-    const btnShare = document.getElementById('btnShare');
-    const statusNote = document.getElementById('statusNote');
-
-    // ตัวอย่าง Flex message ที่จะส่ง
     const flexMessage = {
       type: "flex",
-      altText: "รับสิทธิ์! แชร์แล้วรับของรางวัล",
+      altText: "รับเครดิตฟรีทันที!",
       contents: {
         type: "bubble",
         hero: {
@@ -203,21 +183,29 @@
         body: {
           type: "box",
           layout: "vertical",
-          spacing: "sm",
+          spacing: "md",
           contents: [
             {
               type: "text",
-              text: "รับสิทธิพิเศษทันที!",
+              text: "รับเครดิตฟรีทันที!",
               weight: "bold",
-              size: "md"
+              size: "lg",
+              color: "#111111"
             },
             {
               type: "text",
-              text: "แชร์โพสต์นี้ให้เพื่อนหรือกลุ่ม เพื่อรับสิทธิ์ตามเงื่อนไข",
+              text: "แชร์เพื่อยืนยันสิทธิ์ของคุณ รับเครดิตฟรีตามเงื่อนไขที่กำหนด",
               wrap: true,
-              margin: "sm",
               size: "sm",
-              color: "#666666"
+              color: "#444444"
+            },
+            {
+              type: "text",
+              text: "โปรดกดปุ่มด้านล่างเพื่อเข้ารับสิทธิ์หลังแชร์สำเร็จ",
+              wrap: true,
+              size: "sm",
+              color: "#777777",
+              margin: "sm"
             }
           ]
         },
@@ -228,9 +216,10 @@
             {
               type: "button",
               style: "primary",
+              color: "#ff006a",
               action: {
                 type: "uri",
-                label: "ไปที่ winnerst88.carrd.co",
+                label: "กดรับเครดิตฟรี",
                 uri: "https://winnerst88.carrd.co"
               }
             }
@@ -239,69 +228,33 @@
       }
     };
 
-    // init LIFF
     async function initLiff() {
       try {
         await liff.init({ liffId: LIFF_ID });
-        const inClient = liff.isInClient(); // true when opened in LINE
-        if (!inClient) {
-          statusNote.textContent = "โปรดเปิดหน้านี้จากแอป LINE (LIFF client) เพื่อแชร์โดยตรง";
-          // still allow testing but shareTargetPicker will fail outside client
+        if (liff.isInClient()) {
+          statusNote.textContent = "พร้อมแชร์จากใน LINE";
         } else {
-          statusNote.textContent = "พร้อมแชร์ — เปิดจากแอป LINE เรียบร้อย";
+          statusNote.textContent = "ต้องเปิดจาก LINE ถึงจะกดแชร์ได้";
         }
-      } catch (err) {
-        console.error("LIFF init error:", err);
-        statusNote.textContent = "เกิดข้อผิดพลาดในการเชื่อมต่อ LIFF (ตรวจสอบ LIFF ID และ URL)";
-        btnShare.disabled = true;
+      } catch (e) {
+        statusNote.textContent = "เกิดข้อผิดพลาดกับ LIFF";
+        console.error(e);
       }
     }
 
-    // shareTargetPicker handler
-    async function handleShare() {
+    async function shareFlex() {
       try {
-        // ตรวจสอบว่า API มีให้ใช้
-        if (!liff || !liff.shareTargetPicker) {
-          alert("ไม่พบฟังก์ชัน shareTargetPicker ใน LIFF SDK นี้");
-          return;
-        }
-
-        // เรียก shareTargetPicker ส่งเป็น array ของ message objects
-        const messages = [flexMessage];
-
-        // Optionally: you can pass a callback param to handle result
-        await liff.shareTargetPicker(messages)
-          .then((res) => {
-            // If resolved without error, it means user completed selection or closed the picker.
-            // Note: some LIFF versions resolve even if user cancels — behavior can vary.
-            console.log("shareTargetPicker result:", res);
-            alert("เรียบร้อย! ผู้ใช้ถูกเรียกให้เลือกผู้รับแล้ว (ตรวจสอบในแอป LINE)");
-          })
-          .catch((err) => {
-            console.error("shareTargetPicker error:", err);
-            alert("เกิดข้อผิดพลาดขณะแชร์: " + (err.message || err));
-          });
-
-      } catch (error) {
-        console.error("handleShare error:", error);
-        alert("เกิดข้อผิดพลาด: " + (error.message || error));
+        await liff.shareTargetPicker([flexMessage]);
+        alert("ส่ง Flex แล้ว ตรวจสอบใน LINE!");
+      } catch (e) {
+        alert("แชร์ไม่สำเร็จ: " + e.message);
       }
     }
 
-    // attach
-    btnShare.addEventListener('click', async () => {
-      btnShare.disabled = true;
-      btnShare.textContent = 'กำลังเปิดตัวเลือก...';
-      try {
-        await handleShare();
-      } finally {
-        btnShare.disabled = false;
-        btnShare.textContent = 'กดแชร์ให้เพื่อน/กลุ่ม';
-      }
-    });
+    btnShare.addEventListener("click", shareFlex);
 
-    // initialize on load
-    window.addEventListener('load', initLiff);
+    window.onload = initLiff;
   </script>
+
 </body>
 </html>
